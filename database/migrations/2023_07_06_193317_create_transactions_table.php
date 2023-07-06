@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('reference', 255);
+            $table->string('phone', 15);
+            $table->string('type', 255);
+            $table->text('description');
+            $table->unsignedBigInteger('user_id');
+            $table->string('account');
+            $table->decimal('amount', 6);
+            $table->string('status');
+            $table->unsignedBigInteger('property_id');
+            $table->foreign('property_id')->references('id')->on('properties');
             $table->timestamps();
         });
     }
