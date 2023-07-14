@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string("name");
             $table->integer("rent");
             $table->integer("deposit");
-            $table->unsignedInteger("room_id");
-            $table->foreign("room_id")->references("block_id")->on("blocks")->onDelete("cascade");
+            $table->unsignedBigInteger("room_id");
+            $table->foreign("room_id")->references("id")->on("blocks")->onDelete("cascade");
             $table->timestamps();
         });
     }

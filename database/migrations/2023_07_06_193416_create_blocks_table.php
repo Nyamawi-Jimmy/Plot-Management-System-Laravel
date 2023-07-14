@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->unsignedInteger("block_id");
+            $table->unsignedBigInteger("block_id");
             $table->foreign("block_id")->references("id")->on("properties")->onDelete("cascade");
             $table->timestamps();
         });
