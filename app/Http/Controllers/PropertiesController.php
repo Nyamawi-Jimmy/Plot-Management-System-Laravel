@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PropertiesController extends Controller
 {
+    public function show () {
+        return Properties::all();
+    }
+
     public  function  store(Request $request){
         $validateProperties=$request->validate([
             "name"=>"required|string",

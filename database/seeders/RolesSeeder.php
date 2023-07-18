@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Roles;
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +21,6 @@ class RolesSeeder extends Seeder
         ];
 
         // Insert the roles into the database
-        Roles::insert($roles);
+        Role::insert($roles);
     }
 }
