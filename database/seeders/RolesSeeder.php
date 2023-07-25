@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class RolesSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class RolesSeeder extends Seeder
      */
     public function run(): void
     {
+
         $roles = [
             ['role' => 'Admin'],
             ['role' => 'Moderator'],

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class RoomHistoryController extends Controller
+class DashBoardController extends Controller
 {
-    public  function  show(){
+    public  function show(){
         return "OK";
     }
 }
