@@ -49,15 +49,12 @@ Route::get('/', function () {
     Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
     Route::get('verify', function () {return view('sessions.password.verify');})->middleware('guest')->name('verify');
 
-    Route::get('blocks', [BlocksController::class, 'index'])->name('blocks');
-    Route::get('getAllBlocks', [BlocksController::class, 'getAllBlocks'])->name('allBlocks');
-    Route::post('/save-block', [BlocksController::class, 'store'])->name('saveBlock');
-    Route::get('/block/{id}/find', [BlocksController::class, 'findBlock'])->name('block.find');
-    Route::get('/block/{id}/view', [BlocksController::class, 'view'])->name('block.view');
-    Route::put('/block/{id}/update', [BlocksController::class, 'update'])->name('block.update');
-    Route::get('/block/{id}/delete', [BlocksController::class, 'delete'])->name('block.delete');
-
-
-
-
-
+Route::middleware(['auth:sanctum', 'role:Moderator'])->group(function () {
+        Route::get('blocks', [BlocksController::class, 'index'])->name('blocks');
+        Route::get('getAllBlocks', [BlocksController::class, 'getAllBlocks'])->name('allBlocks');
+        Route::post('/save-block', [BlocksController::class, 'store'])->name('saveBlock');
+        Route::get('/block/{id}/find', [BlocksController::class, 'findBlock'])->name('block.find');
+        Route::get('/block/{id}/view', [BlocksController::class, 'view'])->name('block.view');
+        Route::put('/block/{id}/update', [BlocksController::class, 'update'])->name('block.update');
+        Route::get('/block/{id}/delete', [BlocksController::class, 'delete'])->name('block.delete');
+    });

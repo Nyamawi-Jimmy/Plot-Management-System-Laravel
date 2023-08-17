@@ -24,7 +24,9 @@ class BlocksController extends Controller
 
             $block = new Blocks();
             $block->name = $request->input('name');
-            $block->property_id = 1;
+
+            $propertyId = app(SessionsController::class)->getPropertyId();
+            $block->property_id = $propertyId;
 
             if ($block->save()) {
                 return back()->with('success', 'Block added successful');
@@ -45,7 +47,7 @@ class BlocksController extends Controller
     }
 
     public function getAllBlocks() {
-        $blocks = Blocks::where('property_id', 1)->get();
+        $blocks = Blocks::where('property_id', app(SessionsController::class)->getPropertyId())->get();
         return $blocks;
     }
 

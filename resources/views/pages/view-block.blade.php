@@ -1,9 +1,9 @@
 <x-layout bodyClass="g-sidenav-show bg-gray-200">
 
-    <x-navbars.sidebar activePage="view-block"></x-navbars.sidebar>
+    <x-navbars.sidebar activePage="view-animal"></x-navbars.sidebar>
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage='View Block'></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage='View Animal'></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid px-2 px-md-4">
             <div class="page-header min-height-300 border-radius-xl mt-4"
@@ -14,7 +14,7 @@
                 <div class="row gx-4 mb-2">
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative align-self-center">
-                            <img src="{{--{{ asset('storage/'.$animals->img) }}--}}" alt="profile_image"
+                            <img src="{{ asset('storage/'.$animals->img) }}" alt="profile_image"
                                 class="w-100 border-radius-lg shadow-sm">
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-3">Block Information</h6>
+                                <h6 class="mb-3">Animal Information</h6>
                             </div>
                         </div>
                     </div>

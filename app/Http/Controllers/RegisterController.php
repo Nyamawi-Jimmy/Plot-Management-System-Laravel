@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
@@ -21,8 +23,20 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create($attributes);
-        auth()->login($user);
-        
-        return redirect('/dashboard');
-    } 
+
+        if ($user) {
+            $role = Role::find(3);
+
+            $user->roles()->attach($role);
+
+            $token = $user->createToken('auth_token')->plainTextToken;
+            auth()->login($user);
+
+            return redirect('/dashboard');
+        } else {
+            throw ValidationException::withMessages([
+                'email' => 'Registration Failed'
+            ]);
+        }
+    }
 }
