@@ -8,8 +8,12 @@ use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
+Route::get('/admin', function () {
     return view('dashboard.index');
+})->name('admin');
+
+Route::get('/', function () {
+    return view('screens.home');
 });
 
 
