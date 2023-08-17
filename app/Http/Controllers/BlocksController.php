@@ -81,5 +81,9 @@ class BlocksController extends Controller
         return redirect() -> back() ->with('success', 'Block deleted successfully');
     }
 
+    public function view($id) {
 
+        $blocks = $this->findBlock($id);
+        return view('pages.view-block', compact('blocks'));
+    }
 }
