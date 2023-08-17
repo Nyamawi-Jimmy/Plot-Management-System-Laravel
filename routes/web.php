@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('screens.home');
+    return view('dashboard.index');
 });
 
 
@@ -21,5 +25,27 @@ Route::get('/', function () {
     Route::post("message",[\App\Http\Controllers\MessageController::class,"post"])->name('message');
     Route::post("comment",[\App\Http\Controllers\CommentController::class,"post"])->name('comment');
     Route::get("reservation",[\App\Http\Controllers\ReservationController::class,"show"])->name('reservation');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+    Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
+    Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
+    Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
+    Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
+    Route::get('sign-in', [SessionsController::class, 'create'])->middleware('guest')->name('login');
+    Route::post('sign-in', [SessionsController::class, 'store'])->middleware('guest');
+    Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
+    Route::get('user-profile', [ProfileController::class, 'view'])->name('user-profile');
+    Route::get('user-management', function () {return view('pages.laravel-examples.user-management');})->name('user-management');
+    Route::get('tables', function () {return view('pages.tables');})->name('tables');
+    Route::get('billing', function () {return view('pages.billing');})->name('billing');
+    Route::get('notifications', function () {return view('pages.notifications');})->name('notifications');
+    Route::get('static-sign-in', function () {return view('pages.static-sign-in');})->name('static-sign-in');
+    Route::get('static-sign-up', function () {return view('pages.static-sign-up');})->name('static-sign-up');
+    Route::get('user-management', function () {return view('pages.laravel-examples.user-management');})->name('user-management');
+    Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
+    Route::get('verify', function () {return view('sessions.password.verify');})->middleware('guest')->name('verify');
+
+
+
+
 
 
