@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,9 +48,13 @@ Route::get('/', function () {
     Route::get('user-management', function () {return view('pages.laravel-examples.user-management');})->name('user-management');
     Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
     Route::get('verify', function () {return view('sessions.password.verify');})->middleware('guest')->name('verify');
-    Route::post('/room/{id}',[\App\Http\Controllers\RoomsController::class, 'update'])->name('update');;
-    Route::get('/room/{id}',[\App\Http\Controllers\RoomsController::class, 'edit'])->name('edit');;
-    Route::delete('/room/{id}',[\App\Http\Controllers\RoomsController::class, 'destroy'])->name('delete');;
+
+    Route::get('list', [\App\Http\Controllers\RoomsController::class, 'list'])->name('list');
+    Route::post('/room/{id}',[RoomsController::class, 'update'])->name('update');
+    Route::get('/room/{id}',[RoomsController::class, 'edit'])->name('edit');
+    Route::get('/create',[RoomsController::class, 'create'])->name('create');
+    Route::post('/create',[RoomsController::class, 'store'])->name('store');
+    Route::delete('/room/{id}',[RoomsController::class, 'destroy'])->name('delete');
 
 
 
