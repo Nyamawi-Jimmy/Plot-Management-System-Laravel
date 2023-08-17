@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,7 @@ Route::get('/', function () {
     Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
     Route::get('verify', function () {return view('sessions.password.verify');})->middleware('guest')->name('verify');
 
+
 Route::middleware(['auth:sanctum', 'role:Moderator'])->group(function () {
         Route::get('blocks', [BlocksController::class, 'index'])->name('blocks');
         Route::get('getAllBlocks', [BlocksController::class, 'getAllBlocks'])->name('allBlocks');
@@ -57,4 +59,17 @@ Route::middleware(['auth:sanctum', 'role:Moderator'])->group(function () {
         Route::get('/block/{id}/view', [BlocksController::class, 'view'])->name('block.view');
         Route::put('/block/{id}/update', [BlocksController::class, 'update'])->name('block.update');
         Route::get('/block/{id}/delete', [BlocksController::class, 'delete'])->name('block.delete');
+  
+  Route::get('list', [\App\Http\Controllers\RoomsController::class, 'list'])->name('list');
+
+    Route::post('/room/{id}',[RoomsController::class, 'update'])->name('update');
+
+    Route::get('/room/{id}',[RoomsController::class, 'edit'])->name('edit');
+
+    Route::get('/create',[RoomsController::class, 'create'])->name('create');
+
+    Route::post('/create',[RoomsController::class, 'store'])->name('store');
+
+    Route::delete('/room/{id}',[RoomsController::class, 'destroy'])->name('delete');
     });
+
