@@ -217,6 +217,11 @@
         <div class="col-sm-12 section-t8">
           <div class="row">
             <div class="col-md-7">
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <form class="form-a" method="post" action="{{ route('message') }}">
                     @csrf <!-- Include the CSRF token -->
 
