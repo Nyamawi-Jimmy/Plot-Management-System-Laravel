@@ -47,7 +47,9 @@ Route::get('/', function () {
     Route::get('user-management', function () {return view('pages.laravel-examples.user-management');})->name('user-management');
     Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
     Route::get('verify', function () {return view('sessions.password.verify');})->middleware('guest')->name('verify');
-
+    Route::post('/room/{id}',[\App\Http\Controllers\RoomsController::class, 'update'])->name('update');;
+    Route::get('/room/{id}',[\App\Http\Controllers\RoomsController::class, 'edit'])->name('edit');;
+    Route::delete('/room/{id}',[\App\Http\Controllers\RoomsController::class, 'destroy'])->name('delete');;
 
 
 

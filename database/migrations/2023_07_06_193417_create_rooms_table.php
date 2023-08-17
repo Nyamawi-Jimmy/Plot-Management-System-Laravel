@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("block");
+            $table->string("category");
             $table->integer("rent");
             $table->integer("deposit");
             $table->unsignedBigInteger("room_id");
