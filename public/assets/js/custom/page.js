@@ -24,9 +24,8 @@ function openEditModal(url) {
         dataType: 'json',
         success: function(response) {
             console.log(response);
-            if (url.indexOf('breeds') !== -1) {
+            if (url.indexOf('blocks') !== -1) {
                 $('#editName').val(response.name);
-                $('#editAnimal').val(response.animal);
             } else if (url.indexOf('animal-categories') !== -1) {
                 $('#editName').val(response.animal);
             } else if (url.indexOf('animal') !== -1) {
