@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashBoardController extends Controller
+class BlogController extends Controller
 {
     public  function show(){
-        return "OK";
+        return view("screens.blog-grid");
     }
 }

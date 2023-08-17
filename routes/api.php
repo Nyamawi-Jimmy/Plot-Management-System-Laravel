@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlocksController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RoomHistoryController;
 use App\Http\Controllers\RoomsController;
@@ -22,7 +22,7 @@ Route::post("logout",[AuthController::class,"logout"])->middleware("auth:sanctum
 
 Route::middleware(['auth:sanctum', 'role:Admin'])->group(function () {
     Route::get("property",[PropertiesController::class,"show"]);
-    Route::get("dashboard",[DashBoardController::class,"show"]);
+    Route::get("dashboard",[DashboardController::class,"show"]);
     Route::get("room_history",[RoomHistoryController::class,"show"]);
     Route::post("property",[PropertiesController::class,"store"]);
     Route::get("rooms",[RoomsController::class,"show"]);
@@ -44,6 +44,8 @@ Route::middleware(['auth:sanctum', 'role:User'])->group(function () {
     Route::get("property",[PropertiesController::class,"show"]);
     Route::get("room_history",[RoomHistoryController::class,"show"]);
     Route::get("rooms",[RoomsController::class,"show"]);
+    Route::post("message",[\App\Http\Controllers\MessageController::class,"post"])->name('message');;
+
 
 
 

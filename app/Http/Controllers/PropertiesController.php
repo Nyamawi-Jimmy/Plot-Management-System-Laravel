@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PropertiesController extends Controller
 {
     public function show () {
-        return Properties::all();
+        return view("screens.property-grid");
     }
 
     public  function  store(Request $request){
