@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blocks;
+use App\Models\PropertyUsers;
+use Illuminate\Support\Facades\Auth;
 Use Str;
 Use Hash;
 use Illuminate\Auth\Events\PasswordReset;
@@ -82,6 +85,13 @@ class SessionsController extends Controller
         auth()->logout();
 
         return redirect('/sign-in');
+    }
+
+    public function getPropertyId() {
+        $userId = request()->user()->id;
+        $propertyId = PropertyUsers::where('property_id', $userId)->latest()->first()->property_id;
+
+        return $propertyId;
     }
 
 }
