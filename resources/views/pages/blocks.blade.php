@@ -53,10 +53,10 @@
                                             <td class="text-center">{{ $block->id }}</td>
                                             <td class="text-center">{{ $block->name }}</td>
                                             <td class="text-center">
-                                                <a onclick="openEditModal('/block/' + {{$block->id}} + '/find')"
+                                                <a onclick="openEditModal('/user/' + {{$block->id}} + '/find')"
                                                    class="btn btn-warning mb-0"><i
                                                         class="material-icons text-sm">edit</i></a> | <a
-                                                    onclick="openDeleteModal('/block/' + {{$block->id}} + '/delete')"
+                                                    onclick="openDeleteModal('/user/' + {{$block->id}} + '/delete')"
                                                     class="btn btn-danger mb-0"><i
                                                         class="material-icons text-sm">delete</i></a>
                                             </td>
