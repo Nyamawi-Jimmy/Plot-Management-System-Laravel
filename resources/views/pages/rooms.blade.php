@@ -74,10 +74,10 @@
                                             <td class="text-center"><ID>{{$room->deposit }}</ID></td>
 
                                             <td class="text-center">
-                                                <a onclick=""
+                                                <a onclick="openEditModal('/room/' + {{$room->id}} + '/find')"
                                                    class="btn btn-warning mb-0"><i
                                                         class="material-icons text-sm">edit</i></a> | <a
-                                                    onclick=""
+                                                    onclick="openDeleteModal('/room/' + {{$room->id}} + '/delete')"
                                                     class="btn btn-danger mb-0"><i
                                                         class="material-icons text-sm">delete</i></a>
                                             </td>
@@ -137,19 +137,35 @@
         <div class="modal-dialog modal-dialog-centered modal-medium" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title font-weight-normal" id="settingsModalLabel">Update Block</h5>
+                    <h5 class="modal-title font-weight-normal" id="settingsModalLabel">Update Room</h5>
                     <button aria-label="Close" class="btn-close text-dark" data-bs-dismiss="modal" type="button">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body table-responsive">
                     <form method="POST"
-                          action="{{ isset($block) ? route('block.update', $block->id) : '#' }}">
+                          action="{{ isset($room) ? route('update', $room->id) : '#' }}">
                         @csrf <!-- Add this line to include the CSRF token -->
                         @method('PUT')
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="editName" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name" required>
                             <label for="name">Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="block" name="block" required>
+                            <label for="name">Block</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="category" name="category" required>
+                            <label for="name">Category</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="rent" name="rent" required>
+                            <label for="name">Rent</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="deposit" name="deposit" required>
+                            <label for="name">Deposit</label>
                         </div>
                         <!-- Submit button -->
                         <input type="submit" class="btn btn-primary" value="Update">

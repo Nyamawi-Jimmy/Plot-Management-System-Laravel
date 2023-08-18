@@ -69,10 +69,11 @@ Route::middleware(['auth:sanctum', 'role:Moderator'])->group(function () {
 
         Route::get('rooms', [RoomsController::class, 'create'])->name('rooms');
         Route::get('list', [RoomsController::class, 'list'])->name('list');
-        Route::post('/room/{id}',[RoomsController::class, 'update'])->name('update');
+         Route::get('/room/{id}/find', [RoomsController::class, 'find'])->name('find');
+         Route::put('/room/{id}/update',[RoomsController::class, 'update'])->name('update');
         Route::get('/room/{id}',[RoomsController::class, 'edit'])->name('edit');
         Route::get('/create',[RoomsController::class, 'create'])->name('create');
         Route::post('/create',[RoomsController::class, 'store'])->name('store');
-        Route::delete('/room/{id}',[RoomsController::class, 'destroy'])->name('delete');
+        Route::get('/room/{id}/delete',[RoomsController::class, 'destroy'])->name('delete');
     });
 
