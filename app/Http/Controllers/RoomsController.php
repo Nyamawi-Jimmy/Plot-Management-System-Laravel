@@ -34,11 +34,9 @@ class RoomsController extends Controller
 
     public function create()
     {
-        $room = Room::all();
+        $rooms = Room::all();
 
-        return view("pages.rooms", [
-            "room" => $room
-        ]);
+        return view("pages.rooms", compact('rooms'));
     }
 
     public function list()

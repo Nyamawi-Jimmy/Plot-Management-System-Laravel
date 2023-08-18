@@ -89,7 +89,7 @@ class SessionsController extends Controller
 
     public function getPropertyId() {
         $userId = request()->user()->id;
-        $propertyId = PropertyUsers::where('property_id', $userId)->latest()->first()->property_id;
+        $propertyId = PropertyUsers::where('user_id', $userId)->latest()->first()->property_id;
 
         return $propertyId;
     }

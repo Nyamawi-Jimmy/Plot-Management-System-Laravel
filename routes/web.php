@@ -45,7 +45,6 @@ Route::get('/', function () {
     Route::get('notifications', function () {return view('pages.notifications');})->name('notifications');
     Route::get('static-sign-in', function () {return view('pages.static-sign-in');})->name('static-sign-in');
     Route::get('static-sign-up', function () {return view('pages.static-sign-up');})->name('static-sign-up');
-    Route::get('rooms', function () {return view('pages.rooms');})->name('rooms');
     Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
     Route::get('verify', function () {return view('sessions.password.verify');})->middleware('guest')->name('verify');
 
@@ -59,11 +58,12 @@ Route::middleware(['auth:sanctum', 'role:Moderator'])->group(function () {
         Route::put('/block/{id}/update', [BlocksController::class, 'update'])->name('block.update');
         Route::get('/block/{id}/delete', [BlocksController::class, 'delete'])->name('block.delete');
 
-    Route::get('list', [\App\Http\Controllers\RoomsController::class, 'list'])->name('list');
-    Route::post('/room/{id}',[RoomsController::class, 'update'])->name('update');
-    Route::get('/room/{id}',[RoomsController::class, 'edit'])->name('edit');
-    Route::get('/create',[RoomsController::class, 'create'])->name('create');
-    Route::post('/create',[RoomsController::class, 'store'])->name('store');
-    Route::delete('/room/{id}',[RoomsController::class, 'destroy'])->name('delete');
+        Route::get('rooms', [RoomsController::class, 'create'])->name('rooms');
+        Route::get('list', [RoomsController::class, 'list'])->name('list');
+        Route::post('/room/{id}',[RoomsController::class, 'update'])->name('update');
+        Route::get('/room/{id}',[RoomsController::class, 'edit'])->name('edit');
+        Route::get('/create',[RoomsController::class, 'create'])->name('create');
+        Route::post('/create',[RoomsController::class, 'store'])->name('store');
+        Route::delete('/room/{id}',[RoomsController::class, 'destroy'])->name('delete');
     });
 
