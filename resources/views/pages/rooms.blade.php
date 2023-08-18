@@ -66,12 +66,12 @@
                                     <tbody>
                                     @foreach ($rooms as $room)
                                         <tr>
-                                            <td class="text-center">ID</td>
-                                            <td class="text-center"><ID>NAME</ID></td>
-                                            <td class="text-center"><ID>BLOCK</ID></td>
-                                            <td class="text-center"><ID>CATEGORY</ID></td>
-                                            <td class="text-center"><ID>RENT</ID></td>
-                                            <td class="text-center"><ID>DEPOSIT</ID></td>
+                                            <td class="text-center">{{$room->id }}</td>
+                                            <td class="text-center"><ID>{{$room->name }}</ID></td>
+                                            <td class="text-center"><ID>{{$room->block }}</ID></td>
+                                            <td class="text-center"><ID>{{$room->category }}</ID></td>
+                                            <td class="text-center"><ID>{{$room->rent }}</ID></td>
+                                            <td class="text-center"><ID>{{$room->deposit }}</ID></td>
 
                                             <td class="text-center">
                                                 <a onclick=""
@@ -110,19 +110,19 @@
                             <label for="name">Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="block" name="block" required>
                             <label for="name">Block</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="name" name="" required>
+                            <input type="text" class="form-control" id="category" name="category" required>
                             <label for="name">Category</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="rent" name="rent" required>
                             <label for="name">Rent</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="deposit" name="deposit" required>
                             <label for="name">Deposit</label>
                         </div>
                         <!-- Submit button -->
