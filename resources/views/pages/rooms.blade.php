@@ -1,8 +1,8 @@
 <x-layout bodyClass="g-sidenav-show  bg-gray-200">
-    <x-navbars.sidebar activePage="blocks"></x-navbars.sidebar>
+    <x-navbars.sidebar activePage="rooms"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Blocks"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Rooms"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             @if(session('success'))
@@ -21,12 +21,12 @@
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Blocks Table</h6>
+                                <h6 class="text-white text-capitalize ps-3">Rooms Table</h6>
                             </div>
                         </div>
                         <div class=" me-3 my-3 text-end">
                             <a onclick="openModal()" class="btn bg-gradient-dark mb-0" href="javascript:;"><i
-                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Block</a>
+                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Room</a>
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
@@ -35,11 +35,27 @@
                                     <tr>
                                         <th
                                             class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            #
+                                            ID
                                         </th>
                                         <th
                                             class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Block
+                                            NAME
+                                        </th>
+                                        <th
+                                            class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            BLOCK
+                                        </th>
+                                        <th
+                                            class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            CATEGORY
+                                        </th>
+                                        <th
+                                            class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            RENT
+                                        </th>
+                                        <th
+                                            class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            DEPOSIT
                                         </th>
                                         <th
                                             class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -48,15 +64,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($blocks as $block)
+                                    @foreach ($rooms as $room)
                                         <tr>
-                                            <td class="text-center">{{ $block->id }}</td>
-                                            <td class="text-center">{{ $block->name }}</td>
+                                            <td class="text-center">ID</td>
+                                            <td class="text-center"><ID>NAME</ID></td>
+                                            <td class="text-center"><ID>BLOCK</ID></td>
+                                            <td class="text-center"><ID>CATEGORY</ID></td>
+                                            <td class="text-center"><ID>RENT</ID></td>
+                                            <td class="text-center"><ID>DEPOSIT</ID></td>
+
                                             <td class="text-center">
-                                                <a onclick="openEditModal('/block/' + {{$block->id}} + '/find')"
+                                                <a onclick=""
                                                    class="btn btn-warning mb-0"><i
                                                         class="material-icons text-sm">edit</i></a> | <a
-                                                    onclick="openDeleteModal('/block/' + {{$block->id}} + '/delete')"
+                                                    onclick=""
                                                     class="btn btn-danger mb-0"><i
                                                         class="material-icons text-sm">delete</i></a>
                                             </td>
@@ -76,19 +97,34 @@
         <div class="modal-dialog modal-dialog-centered modal-medium" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title font-weight-normal" id="settingsModalLabel">Add Block</h5>
+                    <h5 class="modal-title font-weight-normal" id="settingsModalLabel">Add Room</h5>
                     <button aria-label="Close" class="btn-close text-dark" data-bs-dismiss="modal" type="button">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body table-responsive">
-                    <form method="POST" action="/save-block">
-                        @csrf <!-- Add this line to include the CSRF token -->
+                    <form method="POST" action="create">
+                        @csrf
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="name" name="name" required>
                             <label for="name">Name</label>
                         </div>
-
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            <label for="name">Block</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="" required>
+                            <label for="name">Category</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            <label for="name">Rent</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            <label for="name">Deposit</label>
+                        </div>
                         <!-- Submit button -->
                         <input type="submit" class="btn btn-primary" value="save">
                     </form>

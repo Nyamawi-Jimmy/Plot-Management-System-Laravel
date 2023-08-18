@@ -40,13 +40,12 @@ Route::get('/', function () {
     Route::post('sign-in', [SessionsController::class, 'store'])->middleware('guest');
     Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
     Route::get('user-profile', [ProfileController::class, 'view'])->name('user-profile');
-    Route::get('user-management', function () {return view('pages.laravel-examples.user-management');})->name('user-management');
     Route::get('tables', function () {return view('pages.tables');})->name('tables');
     Route::get('billing', function () {return view('pages.billing');})->name('billing');
     Route::get('notifications', function () {return view('pages.notifications');})->name('notifications');
     Route::get('static-sign-in', function () {return view('pages.static-sign-in');})->name('static-sign-in');
     Route::get('static-sign-up', function () {return view('pages.static-sign-up');})->name('static-sign-up');
-    Route::get('user-management', function () {return view('pages.laravel-examples.user-management');})->name('user-management');
+    Route::get('rooms', function () {return view('pages.rooms');})->name('rooms');
     Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
     Route::get('verify', function () {return view('sessions.password.verify');})->middleware('guest')->name('verify');
 
@@ -59,17 +58,12 @@ Route::middleware(['auth:sanctum', 'role:Moderator'])->group(function () {
         Route::get('/block/{id}/view', [BlocksController::class, 'view'])->name('block.view');
         Route::put('/block/{id}/update', [BlocksController::class, 'update'])->name('block.update');
         Route::get('/block/{id}/delete', [BlocksController::class, 'delete'])->name('block.delete');
-  
-  Route::get('list', [\App\Http\Controllers\RoomsController::class, 'list'])->name('list');
 
+    Route::get('list', [\App\Http\Controllers\RoomsController::class, 'list'])->name('list');
     Route::post('/room/{id}',[RoomsController::class, 'update'])->name('update');
-
     Route::get('/room/{id}',[RoomsController::class, 'edit'])->name('edit');
-
     Route::get('/create',[RoomsController::class, 'create'])->name('create');
-
     Route::post('/create',[RoomsController::class, 'store'])->name('store');
-
     Route::delete('/room/{id}',[RoomsController::class, 'destroy'])->name('delete');
     });
 

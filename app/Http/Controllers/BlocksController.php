@@ -88,4 +88,6 @@ class BlocksController extends Controller
         $blocks = $this->findBlock($id);
         return view('pages.view-block', compact('blocks'));
     }
+
+
 }
