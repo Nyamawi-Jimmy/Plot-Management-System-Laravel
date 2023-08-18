@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -48,7 +49,15 @@ Route::get('/', function () {
     Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
     Route::get('verify', function () {return view('sessions.password.verify');})->middleware('guest')->name('verify');
 
-
+Route::middleware(['auth:sanctum', 'role:Admin'])->group(function () {
+    Route::get('user-management', [UsersController::class, 'createUsers'])->name('user-management');
+    Route::get('getAllUsers', [UsersController::class, 'getAllUsers'])->name('allUsers');
+    Route::post('/save-user', [UsersController::class, 'store'])->name('saveUser');
+    Route::get('/user/{id}/find', [UsersController::class, 'findUser'])->name('user.find');
+    Route::get('/user/{id}/view', [UsersController::class, 'view'])->name('user.view');
+    Route::put('/user/{id}/update', [UsersController::class, 'update'])->name('user.update');
+    Route::get('/user/{id}/delete', [UsersController::class, 'delete'])->name('user.delete');
+});
 Route::middleware(['auth:sanctum', 'role:Moderator'])->group(function () {
         Route::get('blocks', [BlocksController::class, 'index'])->name('blocks');
         Route::get('getAllBlocks', [BlocksController::class, 'getAllBlocks'])->name('allBlocks');
