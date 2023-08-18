@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blocks;
+use App\Models\Post;
 use App\Models\Room;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Mockery\Exception;
 
-class RoomsController
+class RoomsController extends Controller
 {
     public function store()
     {
@@ -17,19 +23,33 @@ class RoomsController
             "category" => ["string"],
             "rent" => ["integer"],
             "deposit" => ["integer"]
-
         ]);
+
+        Room::create($data);
+
+
+        return redirect("rooms");
 
     }
 
-        public function create()
+    public function create()
     {
         $room = Room::all();
 
-        return view("create", [
-            "users" => $room
+        return view("pages.rooms", [
+            "room" => $room
         ]);
-
     }
+
+    public function list()
+    {
+        $rooms = Room::orderByDesc("created_at")
+            ->get();
+
+        return view("pages.rooms", [
+            "rooms" => $rooms
+        ]);
+    }
+
 
 }
