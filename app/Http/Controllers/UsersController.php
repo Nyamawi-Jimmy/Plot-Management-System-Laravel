@@ -15,7 +15,9 @@ use Mockery\Exception;
 class UsersController extends Controller
 {
     public function createUsers() {
-        $users = User::all();
+        $users = User::with('propertyUser')->get();
+        echo $users;
+
         $properties = Properties::all();
         return view('pages.laravel-examples.user-management', compact('users', 'properties'));
     }

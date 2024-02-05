@@ -17,15 +17,18 @@ class RoomsController extends Controller
     public function store()
     {
         $data = request()->validate([
-            "room_id" => ["integer", Rule::exists('blocks', "id")],
-            "name" => ["string"],
-            "block" => ["string"],
-            "category" => ["string"],
-            "rent" => ["integer"],
-            "deposit" => ["integer"]
+            "name" => ["required", "string"],
+            "block_id" => ["required", "integer"],
+            "category" => ["required", "string"],
+            "rent" => ["required", "integer"],
+            "deposit" => ["required", "integer"],
+                        "status" => ["required", "string"]
+
         ]);
 
-        if (Room::create($data)) {
+        $room = Room::create($data);
+
+        if ($room) {
             return back()->with('success', 'Room added successfully');
         } else {
             return back()->with('fail', 'An error occurred');
@@ -35,8 +38,9 @@ class RoomsController extends Controller
     public function create()
     {
         $rooms = Room::all();
+        $blocks=Blocks::all();
 
-        return view("pages.rooms", compact('rooms'));
+        return view("pages.rooms", compact('rooms',"blocks"));
     }
 
     public function list()
@@ -71,6 +75,9 @@ class RoomsController extends Controller
         $room->category = $request->input('category');
         $room->rent = $request->input('rent');
         $room->deposit = $request->input('deposit');
+        $room->status = $request->input('status');
+
+
 
 
         if ($room->save()) {

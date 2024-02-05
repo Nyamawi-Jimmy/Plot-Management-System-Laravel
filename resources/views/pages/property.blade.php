@@ -1,8 +1,8 @@
 <x-layout bodyClass="g-sidenav-show  bg-gray-200">
-    <x-navbars.sidebar activePage="blocks"></x-navbars.sidebar>
+    <x-navbars.admin-sidebar activePage="properties"></x-navbars.admin-sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Blocks"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Properties"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             @if(session('success'))
@@ -21,12 +21,12 @@
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Blocks Table</h6>
+                                <h6 class="text-white text-capitalize ps-3">Properties Table</h6>
                             </div>
                         </div>
                         <div class=" me-3 my-3 text-end">
                             <a onclick="openModal()" class="btn bg-gradient-dark mb-0" href="javascript:;"><i
-                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Block</a>
+                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Property</a>
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
@@ -39,7 +39,19 @@
                                         </th>
                                         <th
                                             class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Block
+                                            Name
+                                        </th>
+                                        <th
+                                            class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Location
+                                        </th>
+                                        <th
+                                            class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            City
+                                        </th>
+                                        <th
+                                            class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Phone
                                         </th>
                                         <th
                                             class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -48,15 +60,19 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($blocks as $block)
+                                    @foreach ($properties as $property)
                                         <tr>
-                                            <td class="text-center">{{ $block->id }}</td>
-                                            <td class="text-center">{{ $block->name }}</td>
+                                            <td class="text-center">{{ $property->id }}</td>
+                                            <td class="text-center">{{ $property->name }}</td>
+                                            <td class="text-center">{{ $property->location }}</td>
+                                            <td class="text-center">{{ $property->city }}</td>
+                                            <td class="text-center">{{ $property->phone }}</td>
+
                                             <td class="text-center">
-                                                <a onclick="openEditModal('/block/' + {{$block->id}} + '/find')"
+                                                <a onclick="openEditModal('/user/' + {{$property->id}} + '/find')"
                                                    class="btn btn-warning mb-0"><i
                                                         class="material-icons text-sm">edit</i></a> | <a
-                                                    onclick="openDeleteModal('/block/' + {{$block->id}} + '/delete')"
+                                                    onclick="openDeleteModal('/user/' + {{$property->id}} + '/delete')"
                                                     class="btn btn-danger mb-0"><i
                                                         class="material-icons text-sm">delete</i></a>
                                             </td>
@@ -76,17 +92,29 @@
         <div class="modal-dialog modal-dialog-centered modal-medium" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title font-weight-normal" id="settingsModalLabel">Add Block</h5>
+                    <h5 class="modal-title font-weight-normal" id="settingsModalLabel">Add Property</h5>
                     <button aria-label="Close" class="btn-close text-dark" data-bs-dismiss="modal" type="button">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body table-responsive">
-                    <form method="POST" action="/save-block">
+                    <form method="POST" action="/save-property">
                         @csrf <!-- Add this line to include the CSRF token -->
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="name" name="name" required>
                             <label for="name">Name</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="location" required>
+                            <label for="name">Location</label>
+                        </div><div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="city" required>
+                            <label for="name">City</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="phone" required>
+                            <label for="name">Phone</label>
                         </div>
 
                         <!-- Submit button -->
@@ -101,19 +129,29 @@
         <div class="modal-dialog modal-dialog-centered modal-medium" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title font-weight-normal" id="settingsModalLabel">Update Block</h5>
+                    <h5 class="modal-title font-weight-normal" id="settingsModalLabel">Update Property</h5>
                     <button aria-label="Close" class="btn-close text-dark" data-bs-dismiss="modal" type="button">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body table-responsive">
                     <form method="POST"
-                          action="{{ isset($block) ? route('block.update', $block->id) : '#' }}">
+                          action="{{ isset($property) ? route('property.update', $property->id) : '#' }}">
                         @csrf <!-- Add this line to include the CSRF token -->
                         @method('PUT')
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="editName" name="name" required>
                             <label for="name">Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="editName" name="location" required>
+                            <label for="name">Location</label>
+                        </div> <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="editName" name="city" required>
+                            <label for="name">City</label>
+                        </div> <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="editName" name="phone" required>
+                            <label for="name">Phone</label>
                         </div>
                         <!-- Submit button -->
                         <input type="submit" class="btn btn-primary" value="Update">

@@ -39,23 +39,38 @@
                                     </thead>
                                     <tbody>
                                     <tbody>
+
                                     @foreach ($users as $user)
                                         <tr>
                                             <td class="text-center">{{ $user->id }}</td>
                                             <td class="text-center">{{ $user->name }}</td>
                                             <td class="text-center">{{ $user->email }}</td>
-                                            <td class="text-center">{{ $user->email }}</td>
                                             <td class="text-center">
-                                                <a onclick="openEditModal('/user/' + {{$user->id}} + '/find')"
-                                                   class="btn btn-warning mb-0"><i
-                                                        class="material-icons text-sm">edit</i></a> | <a
-                                                    onclick="openDeleteModal('/user/' + {{$user->id}} + '/delete')"
-                                                    class="btn btn-danger mb-0"><i
-                                                        class="material-icons text-sm">delete</i></a>
+                                                @if ($user->property_user)
+                                                    @foreach ($user->property_user as $propertyUser)
+                                                        @if ($propertyUser->property_id)
+                                                            {{ $propertyUser->property->name }}
+                                                            {{-- You can display other property attributes as needed --}}
+                                                            <br>
+                                                        @else
+                                                            Property not found
+                                                            <br>
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    No properties
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                <a onclick="openEditModal('/user/{{ $user->id }}/find')" class="btn btn-warning mb-0">
+                                                    <i class="material-icons text-sm">edit</i>
+                                                </a> |
+                                                <a onclick="openDeleteModal('/user/{{ $user->id }}/delete')" class="btn btn-danger mb-0">
+                                                    <i class="material-icons text-sm">delete</i>
+                                                </a>
                                             </td>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
+                                    @endforeach                                    </tbody>
                                 </table>
                             </div>
                             <div aria-hidden="true" aria-labelledby="addPigModal" class="modal fade" id="addPigModal"

@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("block");
             $table->string("category");
             $table->integer("rent");
             $table->integer("deposit");
+            $table->string("status");
+
             $table->unsignedBigInteger("block_id");
             $table->foreign("block_id")->references("id")->on("blocks")->onDelete("cascade");
             $table->timestamps();

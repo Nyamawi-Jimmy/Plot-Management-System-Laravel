@@ -4,6 +4,7 @@ use App\Http\Controllers\BlocksController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\SessionsController;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/admin', function () {
-    return view('dashboard.index');
+    return view('dashboard.admin');
 })->name('admin');
 
 Route::get('/', function () {
@@ -57,6 +58,33 @@ Route::middleware(['auth:sanctum', 'role:Admin'])->group(function () {
     Route::get('/user/{id}/view', [UsersController::class, 'view'])->name('user.view');
     Route::put('/user/{id}/update', [UsersController::class, 'update'])->name('user.update');
     Route::get('/user/{id}/delete', [UsersController::class, 'delete'])->name('user.delete');
+
+
+    Route::get("property",[PropertiesController::class,"show"]);
+    Route::get('getAllProperties', [PropertiesController::class, 'getAllProperties'])->name('allProperties');
+    Route::post('/save-property', [PropertiesController::class, 'store'])->name('saveProperty');
+    Route::get('/property/{id}/find', [PropertiesController::class, 'findProperty'])->name('property.find');
+    Route::get('/property/{id}/view', [PropertiesController::class, 'view'])->name('property.view');
+    Route::put('/property/{id}/update', [PropertiesController::class, 'update'])->name('property.update');
+    Route::get('/property/{id}/delete', [PropertiesController::class, 'delete'])->name('property.delete');
+
+    Route::get('blocks', [BlocksController::class, 'index'])->name('blocks');
+    Route::get('getAllBlocks', [BlocksController::class, 'getAllBlocks'])->name('allBlocks');
+    Route::post('/save-block', [BlocksController::class, 'store'])->name('saveBlock');
+    Route::get('/block/{id}/find', [BlocksController::class, 'findBlock'])->name('block.find');
+    Route::get('/block/{id}/view', [BlocksController::class, 'view'])->name('block.view');
+    Route::put('/block/{id}/update', [BlocksController::class, 'update'])->name('block.update');
+    Route::get('/block/{id}/delete', [BlocksController::class, 'delete'])->name('block.delete');
+
+    Route::get('rooms', [RoomsController::class, 'create'])->name('rooms');
+    Route::get('list', [RoomsController::class, 'list'])->name('list');
+    Route::get('/room/{id}/find', [RoomsController::class, 'find'])->name('find');
+    Route::put('/room/{id}/update',[RoomsController::class, 'update'])->name('update');
+    Route::get('/room/{id}',[RoomsController::class, 'edit'])->name('edit');
+    Route::get('/create',[RoomsController::class, 'create'])->name('create');
+    Route::post('/create',[RoomsController::class, 'store'])->name('store');
+    Route::get('/room/{id}/delete',[RoomsController::class, 'destroy'])->name('delete');
+
 });
 Route::middleware(['auth:sanctum', 'role:Moderator'])->group(function () {
         Route::get('blocks', [BlocksController::class, 'index'])->name('blocks');

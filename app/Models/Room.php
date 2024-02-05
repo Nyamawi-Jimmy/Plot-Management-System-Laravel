@@ -12,7 +12,7 @@ class Room extends Model
     protected $fillable=[
         "room_id" ,
         "name" ,
-        "block",
+        "block_id",
         "category",
         "rent" ,
         "deposit",

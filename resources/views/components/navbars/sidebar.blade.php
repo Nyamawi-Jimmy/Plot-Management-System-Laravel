@@ -8,7 +8,7 @@
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 d-flex text-wrap align-items-center" href=" {{ route('dashboard') }} ">
             <img src="{{ asset('assets') }}/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-2 font-weight-bold text-white">{{ config('app.name') }}</span>
+            <span class="ms-2 font-weight-bold text-white">{{ auth()->user()->name }}</span>
         </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -16,7 +16,7 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'dashboard' ? ' active bg-gradient-primary' : '' }} "
-                    href="{{ route('admin') }}">
+                    href="{{ route('dashboard') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">dashboard</i>
                     </div>
@@ -42,8 +42,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'rooms' ? ' active bg-gradient-primary' : '' }} "
-                   href="{{ route('rooms') }}">
+                <a class="nav-link text-white {{ $activePage == 'billing' ? ' active bg-gradient-primary' : '' }} "
+                   href="{{ route('billing') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">people</i>
                     </div>

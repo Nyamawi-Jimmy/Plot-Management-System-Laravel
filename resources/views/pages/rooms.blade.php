@@ -59,6 +59,10 @@
                                         </th>
                                         <th
                                             class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            STATUS
+                                        </th>
+                                        <th
+                                            class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Action
                                         </th>
                                     </tr>
@@ -72,6 +76,8 @@
                                             <td class="text-center"><ID>{{$room->category }}</ID></td>
                                             <td class="text-center"><ID>{{$room->rent }}</ID></td>
                                             <td class="text-center"><ID>{{$room->deposit }}</ID></td>
+                                            <td class="text-center"><ID>{{$room->status }}</ID></td>
+
 
                                             <td class="text-center">
                                                 <a onclick="openEditModal('/room/' + {{$room->id}} + '/find')"
@@ -109,10 +115,17 @@
                             <input type="text" class="form-control" id="name" name="name" required>
                             <label for="name">Name</label>
                         </div>
+                        <!-- your-view.blade.php -->
+
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="block" name="block" required>
+                            <select class="form-select" id="block_id" name="block_id" required>
+                                @foreach ($blocks as $block)
+                                    <option value="{{ $block->id }}">{{ $block->name }}</option>
+                                @endforeach
+                            </select>
                             <label for="name">Block</label>
                         </div>
+
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="category" name="category" required>
                             <label for="name">Category</label>
@@ -124,6 +137,10 @@
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="deposit" name="deposit" required>
                             <label for="name">Deposit</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="deposit" name="status" required>
+                            <label for="name">Status</label>
                         </div>
                         <!-- Submit button -->
                         <input type="submit" class="btn btn-primary" value="save">

@@ -11,6 +11,5 @@ class PropertyUsers extends Model
 
     public function property()
     {
-        return $this->belongsTo(PropertyUsers::class);
-    }
+        return $this->belongsTo(Properties::class, 'property_users');    }
 }

@@ -1,5 +1,5 @@
 <x-layout bodyClass="g-sidenav-show  bg-gray-200">
-    <x-navbars.sidebar activePage='dashboard'></x-navbars.admin-sidebar>
+    <x-navbars.admin-sidebar activePage='dashboard'></x-navbars.admin-sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage="Dashboard"></x-navbars.navs.auth>
@@ -15,7 +15,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Blocks</p>
-                                <h4 class="mb-0">{{$blocksCount}}</h4>
+                                <h4 class="mb-0">0</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -33,7 +33,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Rooms</p>
-                                <h4 class="mb-0">{{$roomCount}}</h4>
+                                <h4 class="mb-0">0</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -50,7 +50,7 @@
                                 <i class="material-icons opacity-10">person</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Booked</p>
+                                <p class="text-sm mb-0 text-capitalize">Income</p>
                                 <h4 class="mb-0">0</h4>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 <i class="material-icons opacity-10">weekend</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Reserved</p>
+                                <p class="text-sm mb-0 text-capitalize">Expenses</p>
                                 <h4 class="mb-0">0</h4>
                             </div>
                         </div>
